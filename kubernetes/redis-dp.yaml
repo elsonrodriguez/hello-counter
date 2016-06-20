@@ -14,7 +14,7 @@ spec:
       containers:
       - name: redis
         image: redis:3.2.1
-        - args:
+        args:
           - redis-server
           - --appendonly yes
         ports:

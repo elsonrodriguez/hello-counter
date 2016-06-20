@@ -4,13 +4,15 @@ metadata:
   name: hello-counter 
   labels:
     app: hello-counter
-    version: 1.0
 spec:
   containers:
     - name: hello-counter
-      image: elsonrodriguez/hello-counter:1.0 
+      image: elsonrodriguez/hello-counter:1.0
+      env:
+        - name: REDIS_HOST
+          value: redis
       ports:
-        - containerPort: 5000 
+        - containerPort: 5000
       resources:
         limits:
           memory: "50Mi"
