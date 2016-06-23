@@ -21,7 +21,7 @@ def hello():
       redis_host = os.getenv('REDIS_HOST', 'localhost')
       redis_counter_key = os.getenv('REDIS_COUNTER_KEY', 'hello_counter')
 
-      redis_server = redis.Redis(host=redis_host, socket_timeout=0.2)
+      redis_server = redis.Redis(host=redis_host, socket_timeout=0.05)
       redis_server.incr('hello_counter', 1)
       visitor_number = redis_server.get('hello_counter')
 
