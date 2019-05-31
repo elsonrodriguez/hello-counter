@@ -1,22 +1,38 @@
 steps:
-
 - name: 'gcr.io/cloud-builders/docker'
-  id: Image Build
+  id: Container Image Build
   args:
   - 'build'
   - '-t'
-  - 'gcr.io/$PROJECT_ID/hello-counter:$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/hello-counter:${SHORT_SHA}'
   - '.'
 - name: 'gcr.io/cloud-builders/docker'
-  id: Image Push
+  id: Container Image Push
   args:
   - 'push'
-  - 'gcr.io/$PROJECT_ID/hello-counter:$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/hello-counter:${SHORT_SHA}'
 - name: 'gcr.io/cloud-builders/gcloud'
-  id: Cloud Run Deploy
+  id: Cloud Function Deploy
   args:
   - functions
   - deploy
   - hello
   - --runtime=python37
   - --trigger-http
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Cloud Function Deploy
+  args:
+  - functions
+  - deploy
+  - hello
+  - --runtime=python37
+  - --trigger-http
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Cloud Run Deploy
+  args:
+  - beta
+  - run
+  - deploy
+  - hello-counter
+  - --image=gcr.io/$PROJECT_ID/hello-counter:${SHORT_SHA}'
+  - --region=us-central1
