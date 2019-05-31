@@ -1,5 +1,19 @@
 steps:
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: Image Build
+  args:
+  - 'build'
+  - '-t'
+  - 'gcr.io/$PROJECT_ID/hello-counter:$SHORT_SHA'
+  - '.'
+- name: 'gcr.io/cloud-builders/docker'
+  id: Image Push
+  args:
+  - 'push'
+  - 'gcr.io/$PROJECT_ID/hello-counter:$SHORT_SHA'
 - name: 'gcr.io/cloud-builders/gcloud'
+  id: Cloud Run Deploy
   args:
   - functions
   - deploy
