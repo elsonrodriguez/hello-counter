@@ -26,5 +26,5 @@ steps:
   - run
   - deploy
   - hello-counter
-  - --image=gcr.io/$PROJECT_ID/hello-counter:${SHORT_SHA}'
+  - --image=gcr.io/$PROJECT_ID/hello-counter:${SHORT_SHA}
   - --region=us-central1
