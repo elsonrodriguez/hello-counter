@@ -4,5 +4,5 @@ steps:
   - functions
   - deploy
   - hello
-  - --runtime python37
+  - --runtime=python37
   - --trigger-http
