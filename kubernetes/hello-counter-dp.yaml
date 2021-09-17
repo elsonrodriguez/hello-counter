@@ -6,6 +6,9 @@ metadata:
     app: hello-counter
 spec:
   replicas: 10
+  selector:
+    matchLabels:
+      app: hello-counter 
   template:
     metadata:
       labels:
